@@ -177,6 +177,85 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/%E3%80%90AJAX%E3%80%91%E7%94%A8XMLHttpReques%E5%90%91%E9%81%A0%E7%AB%AF%E8%AB%8B%E6%B1%82%E8%B3%87%E6%96%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="這個網站記錄艾瑞森在前端森林的各種探索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="艾瑞森的前端森林">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/02/%E3%80%90AJAX%E3%80%91%E7%94%A8XMLHttpReques%E5%90%91%E9%81%A0%E7%AB%AF%E8%AB%8B%E6%B1%82%E8%B3%87%E6%96%99/" class="post-title-link" itemprop="url">【AJAX】用XMLHttpReques向遠端請求資料</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-02 23:38:22" itemprop="dateCreated datePublished" datetime="2020-05-02T23:38:22+08:00">2020-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-06-02 21:49:20" itemprop="dateModified" datetime="2020-06-02T21:49:20+08:00">2020-06-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="【AJAX】用XMLHttpReques向遠端請求資料"><a href="#【AJAX】用XMLHttpReques向遠端請求資料" class="headerlink" title="【AJAX】用XMLHttpReques向遠端請求資料"></a>【AJAX】用XMLHttpReques向遠端請求資料</h1><h2 id="▌前言"><a href="#▌前言" class="headerlink" title="▌前言"></a>▌前言</h2><h3 id="▌JS是單線程語言-Single-Thread"><a href="#▌JS是單線程語言-Single-Thread" class="headerlink" title="▌JS是單線程語言 (Single Thread)"></a>▌JS是單線程語言 (Single Thread)</h3><p>代表在JS同時間一次只能做一件事情，所有事情要排隊一個個執行。</p>
+<h3 id="▌不屬於單線程的範圍-非同步"><a href="#▌不屬於單線程的範圍-非同步" class="headerlink" title="▌不屬於單線程的範圍(非同步)"></a>▌不屬於單線程的範圍(非同步)</h3><p>像setTimeout、Ajax、Promise是WebAPIs，就不是單線程，可以同時執行。</p>
+<hr>
+<h3 id="▌AJAX是什麼"><a href="#▌AJAX是什麼" class="headerlink" title="▌AJAX是什麼?"></a>▌AJAX是什麼?</h3><p><a href="https://zh.wikipedia.org/wiki/AJAX" target="_blank" rel="noopener">AJAX</a>又稱「Asynchronous JavaScript and XML」（非同步的JavaScript與XML技術）。<br>透過AJAX技術，可以向遠端的伺服器請求資料，但再發出請求的同時，並不會需要重整頁面。請求到資料後，可以再由前端進行整理，呈現出想要的資料。<br>例如可以到opendata找出想要的資料並使用。像之前做過的口罩地圖就是使用衛服部所提供資料，<a href="https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json" target="_blank" rel="noopener">Kiang 整理的Json檔案</a>進行資料請求，更新地圖資訊。比較常見的應用像是信箱的認證，確認是否有填寫錯誤，或是重複註冊等。</p>
+<blockquote>
+<p>過去比較流行XML這種格式的資料，現在以JSON為大宗。</p>
+</blockquote>
+<hr>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/02/%E3%80%90AJAX%E3%80%91%E7%94%A8XMLHttpReques%E5%90%91%E9%81%A0%E7%AB%AF%E8%AB%8B%E6%B1%82%E8%B3%87%E6%96%99/#more" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/26/%E3%80%90gulp%E3%80%91-%E8%AE%93%E6%88%91%E5%80%91%E8%87%AA%E5%8B%95%E7%94%A2%E7%94%9F%E5%87%BA%E6%BC%82%E4%BA%AE%E7%9A%84%E5%AE%8C%E6%88%90%E6%AA%94%E5%90%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E5%9F%B7%E8%A1%8C%E4%BB%BB%E5%8B%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -266,10 +345,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-04-25 23:38:22 / 修改時間：11:55:38" itemprop="dateCreated datePublished" datetime="2020-04-25T23:38:22+08:00">2020-04-25</time>
+              <time title="創建時間：2020-04-25 23:38:22" itemprop="dateCreated datePublished" datetime="2020-04-25T23:38:22+08:00">2020-04-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-06-02 21:42:59" itemprop="dateModified" datetime="2020-06-02T21:42:59+08:00">2020-06-02</time>
+              </span>
 
           
 
@@ -447,14 +532,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>

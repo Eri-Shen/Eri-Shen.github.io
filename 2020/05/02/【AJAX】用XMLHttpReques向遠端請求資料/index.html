@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="【AJAX】用XMLHttpReques向遠端請求資料▌前言▌JS是單線程語言 (Single Thread)代表在JS同時間一次只能做一件事情，所有事情要排隊一個個執行。 ▌不屬於單線程的範圍(非同步)像setTimeout、Ajax、Promise是WebAPIs，就不是單線程，可以同時執行。  ▌AJAX是什麼?AJAX又稱「Asynchronous JavaScript and XML」（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【AJAX】用XMLHttpReques向遠端請求資料">
+<meta property="og:url" content="http://yoursite.com/2020/05/02/%E3%80%90AJAX%E3%80%91%E7%94%A8XMLHttpReques%E5%90%91%E9%81%A0%E7%AB%AF%E8%AB%8B%E6%B1%82%E8%B3%87%E6%96%99/index.html">
+<meta property="og:site_name" content="艾瑞森的前端森林">
+<meta property="og:description" content="【AJAX】用XMLHttpReques向遠端請求資料▌前言▌JS是單線程語言 (Single Thread)代表在JS同時間一次只能做一件事情，所有事情要排隊一個個執行。 ▌不屬於單線程的範圍(非同步)像setTimeout、Ajax、Promise是WebAPIs，就不是單線程，可以同時執行。  ▌AJAX是什麼?AJAX又稱「Asynchronous JavaScript and XML」（">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/Ue04rXa.png">
+<meta property="og:image" content="https://i.imgur.com/McWHXFk.png">
+<meta property="og:image" content="https://i.imgur.com/q1I9RtV.png">
+<meta property="og:image" content="https://i.imgur.com/ZahcZsu.png">
+<meta property="og:image" content="https://i.imgur.com/lV3PPUy.png">
+<meta property="article:published_time" content="2020-05-02T15:38:22.000Z">
+<meta property="article:modified_time" content="2020-06-02T13:49:20.177Z">
+<meta property="article:author" content="Eri Shen">
+<meta property="article:tag" content="Ajax">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/Ue04rXa.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/05/02/%E3%80%90AJAX%E3%80%91%E7%94%A8XMLHttpReques%E5%90%91%E9%81%A0%E7%AB%AF%E8%AB%8B%E6%B1%82%E8%B3%87%E6%96%99/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>【AJAX】用XMLHttpReques向遠端請求資料 | 艾瑞森的前端森林</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">艾瑞森的前端森林</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-首頁"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-標籤"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-分類"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-歸檔"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/%E3%80%90AJAX%E3%80%91%E7%94%A8XMLHttpReques%E5%90%91%E9%81%A0%E7%AB%AF%E8%AB%8B%E6%B1%82%E8%B3%87%E6%96%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="這個網站記錄艾瑞森在前端森林的各種探索">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="艾瑞森的前端森林">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【AJAX】用XMLHttpReques向遠端請求資料
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-05-02 23:38:22" itemprop="dateCreated datePublished" datetime="2020-05-02T23:38:22+08:00">2020-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-06-02 21:49:20" itemprop="dateModified" datetime="2020-06-02T21:49:20+08:00">2020-06-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="【AJAX】用XMLHttpReques向遠端請求資料"><a href="#【AJAX】用XMLHttpReques向遠端請求資料" class="headerlink" title="【AJAX】用XMLHttpReques向遠端請求資料"></a>【AJAX】用XMLHttpReques向遠端請求資料</h1><h2 id="▌前言"><a href="#▌前言" class="headerlink" title="▌前言"></a>▌前言</h2><h3 id="▌JS是單線程語言-Single-Thread"><a href="#▌JS是單線程語言-Single-Thread" class="headerlink" title="▌JS是單線程語言 (Single Thread)"></a>▌JS是單線程語言 (Single Thread)</h3><p>代表在JS同時間一次只能做一件事情，所有事情要排隊一個個執行。</p>
+<h3 id="▌不屬於單線程的範圍-非同步"><a href="#▌不屬於單線程的範圍-非同步" class="headerlink" title="▌不屬於單線程的範圍(非同步)"></a>▌不屬於單線程的範圍(非同步)</h3><p>像setTimeout、Ajax、Promise是WebAPIs，就不是單線程，可以同時執行。</p>
+<hr>
+<h3 id="▌AJAX是什麼"><a href="#▌AJAX是什麼" class="headerlink" title="▌AJAX是什麼?"></a>▌AJAX是什麼?</h3><p><a href="https://zh.wikipedia.org/wiki/AJAX" target="_blank" rel="noopener">AJAX</a>又稱「Asynchronous JavaScript and XML」（非同步的JavaScript與XML技術）。<br>透過AJAX技術，可以向遠端的伺服器請求資料，但再發出請求的同時，並不會需要重整頁面。請求到資料後，可以再由前端進行整理，呈現出想要的資料。<br>例如可以到opendata找出想要的資料並使用。像之前做過的口罩地圖就是使用衛服部所提供資料，<a href="https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json" target="_blank" rel="noopener">Kiang 整理的Json檔案</a>進行資料請求，更新地圖資訊。比較常見的應用像是信箱的認證，確認是否有填寫錯誤，或是重複註冊等。</p>
+<blockquote>
+<p>過去比較流行XML這種格式的資料，現在以JSON為大宗。</p>
+</blockquote>
+<hr>
+<a id="more"></a>
+
+<h2 id="▌如何向伺服器請求資料"><a href="#▌如何向伺服器請求資料" class="headerlink" title="▌如何向伺服器請求資料?"></a>▌如何向伺服器請求資料?</h2><p>我們可以使用<a href="https://developer.mozilla.org/zh-TW/docs/Web/API/XMLHttpRequest" target="_blank" rel="noopener">XMLHttpRequest</a>這個WebAPIs物件。</p>
+<blockquote>
+<p>AJAX不等於XMLHttpRequest，XMLHttpRequest只是一個可以做到AJAX的方式</p>
+</blockquote>
+<br>
+
+<h3 id="▌宣告XMLHttpReques"><a href="#▌宣告XMLHttpReques" class="headerlink" title="▌宣告XMLHttpReques"></a>▌宣告XMLHttpReques</h3><p>首先，先宣告一個<code>XMLHttpRequest</code>物件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br></pre></td></tr></table></figure>
+<p>來看看他有哪些屬性可以操作<br><img src="https://i.imgur.com/Ue04rXa.png" alt=""><br><br></p>
+<h3 id="▌查看目前狀態XMLHttpRequest-readyState"><a href="#▌查看目前狀態XMLHttpRequest-readyState" class="headerlink" title="▌查看目前狀態XMLHttpRequest.readyState"></a>▌查看目前狀態XMLHttpRequest.readyState</h3><p>XMLHttpRequest.readyState這個屬性會回傳目前的狀態<br>|值|    狀態|    說明|<br>| ——– | ——– | ——– |<br>|0|    UNSENT|    有建立一個XMLHttpRequest物件，但 open() 方法尚未被呼叫，還沒有連結到要的資料|<br>|1|    OPENED    |已經open()這個方法，但是還沒有使用send()|<br>|2|    HEADERS_RECEIVED    |send() 方法已被呼叫，而且可取得 header 與狀態。|<br>|3|    LOADING    |回應資料下載中，此時 responseText 會擁有部分資料。|<br>|4|    DONE    |接收到遠端資料|<br><br></p>
+<h3 id="▌設定要請求的資料open"><a href="#▌設定要請求的資料open" class="headerlink" title="▌設定要請求的資料open()"></a>▌設定要請求的資料open()</h3><p>宣告完物件之後，現在要設定要連結遠端伺服器的資料，使用open()這個方法。</p>
+<blockquote>
+<p>async：預設為true非同步，false為同步，選擇false會再資料還沒接收回來前都不會執行別的任務，這樣會破壞使用者體驗，不建議使用</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(<span class="string">'讀取資料方式'</span>,<span class="string">'遠端網址'</span>,同步或非同步-填ture或是<span class="literal">false</span>)</span><br><span class="line"><span class="comment">//以剛剛提到衛服部的資料作為範例</span></span><br><span class="line">xhr.open(<span class="string">'get'</span>, <span class="string">'https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json'</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<p>可以看到readyState顯示1，使用open()，尚未send()的階段<br><img src="https://i.imgur.com/McWHXFk.png" alt=""><br><br></p>
+<h3 id="▌送出設定好的資料到遠端伺服器進行請求send"><a href="#▌送出設定好的資料到遠端伺服器進行請求send" class="headerlink" title="▌送出設定好的資料到遠端伺服器進行請求send()"></a>▌送出設定好的資料到遠端伺服器進行請求send()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xhr.send(參數)</span><br><span class="line"><span class="comment">//因為使用GET的方式，所以不用傳遞參數</span></span><br><span class="line">xhr.send(<span class="literal">null</span>)<span class="comment">//預設參數是null</span></span><br></pre></td></tr></table></figure>
+<p>送出之後，這時候就要等一段時間等伺服器傳送資料<br>那要怎麼之道資料已經傳過來客戶端了呢?<br><br></p>
+<h3 id="▌確認資料回來了，使用onload"><a href="#▌確認資料回來了，使用onload" class="headerlink" title="▌確認資料回來了，使用onload"></a>▌確認資料回來了，使用onload</h3><p>可以使用onload來執行資料回來之後的要做的事情<br>那我們就來看看接收到的xhr有什麼</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xhr.onload= <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(xhr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到readyState顯示4，成功接收到資料<br>在xhr.response也有內容<br>xhr.responseText也有字串<br><img src="https://i.imgur.com/q1I9RtV.png" alt=""></p>
+<p>這樣就可以撈出資料，進行想要的處理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//將回來的資料從字串轉成JSON格式</span></span><br><span class="line"><span class="keyword">var</span> strData = xhr.responseText;</span><br><span class="line"><span class="keyword">var</span> JsonData = <span class="built_in">JSON</span>.parse(strData);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/ZahcZsu.png" alt=""><br><img src="https://i.imgur.com/lV3PPUy.png" alt=""></p>
+<br>
+以上就是使用XMLHttpReques向遠端伺服器請求資料!
+
+
+
+<hr>
+<p>參考資料：</p>
+<ul>
+<li><a href="https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/668661/" target="_blank" rel="noopener">[轉載]搞定XMLHttpRequest</a></li>
+<li><a href="https://wcc723.github.io/development/2020/02/16/all-new-promise/" target="_blank" rel="noopener">JavaScript Promise 全介紹</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10200409" target="_blank" rel="noopener">從頭開始的API 和ajax系列</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Ajax/" rel="tag"># Ajax</a>
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/26/%E3%80%90gulp%E3%80%91-%E8%AE%93%E6%88%91%E5%80%91%E8%87%AA%E5%8B%95%E7%94%A2%E7%94%9F%E5%87%BA%E6%BC%82%E4%BA%AE%E7%9A%84%E5%AE%8C%E6%88%90%E6%AA%94%E5%90%A7-%E5%AE%89%E8%A3%9D%E8%88%87%E5%9F%B7%E8%A1%8C%E4%BB%BB%E5%8B%99/" rel="prev" title="【gulp】-讓我們自動產生出漂亮的完成檔吧-安裝與執行任務">
+      <i class="fa fa-chevron-left"></i> 【gulp】-讓我們自動產生出漂亮的完成檔吧-安裝與執行任務
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【AJAX】用XMLHttpReques向遠端請求資料"><span class="nav-number">1.</span> <span class="nav-text">【AJAX】用XMLHttpReques向遠端請求資料</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#▌前言"><span class="nav-number">1.1.</span> <span class="nav-text">▌前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#▌JS是單線程語言-Single-Thread"><span class="nav-number">1.1.1.</span> <span class="nav-text">▌JS是單線程語言 (Single Thread)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌不屬於單線程的範圍-非同步"><span class="nav-number">1.1.2.</span> <span class="nav-text">▌不屬於單線程的範圍(非同步)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌AJAX是什麼"><span class="nav-number">1.1.3.</span> <span class="nav-text">▌AJAX是什麼?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌如何向伺服器請求資料"><span class="nav-number">1.2.</span> <span class="nav-text">▌如何向伺服器請求資料?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#▌宣告XMLHttpReques"><span class="nav-number">1.2.1.</span> <span class="nav-text">▌宣告XMLHttpReques</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌查看目前狀態XMLHttpRequest-readyState"><span class="nav-number">1.2.2.</span> <span class="nav-text">▌查看目前狀態XMLHttpRequest.readyState</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌設定要請求的資料open"><span class="nav-number">1.2.3.</span> <span class="nav-text">▌設定要請求的資料open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌送出設定好的資料到遠端伺服器進行請求send"><span class="nav-number">1.2.4.</span> <span class="nav-text">▌送出設定好的資料到遠端伺服器進行請求send()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌確認資料回來了，使用onload"><span class="nav-number">1.2.5.</span> <span class="nav-text">▌確認資料回來了，使用onload</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description">這個網站記錄艾瑞森在前端森林的各種探索</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
