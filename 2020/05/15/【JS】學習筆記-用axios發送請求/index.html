@@ -191,7 +191,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Auteur">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="這個網站記錄艾瑞森在前端森林的各種探索">
     </span>
 
@@ -242,10 +242,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1>【JS】學習筆記-用axios發送請求</h1>
+        <h1 id="【JS】學習筆記-用axios發送請求"><a class="header-anchor" href="#【JS】學習筆記-用axios發送請求"></a>【JS】學習筆記-用axios發送請求</h1>
 <p>axios的用法與XMLHttpReques相同，一樣是一個由客戶端向遠端請求(GET、POST)的方法，它是基於Promise開發的，也可支援Promise API</p>
 <a id="more"></a>
-<h2 id="▌axios基本了解">▌axios基本了解</h2>
+<h2 id="▌axios基本了解"><a class="header-anchor" href="#▌axios基本了解"></a>▌axios基本了解</h2>
 <p>整理自官方文件</p>
 <ul>
 <li>可以送出XMLHttpRequests到伺服器</li>
@@ -255,7 +255,7 @@
 <li>自動將格式轉換為JSON</li>
 <li>幫保護客戶端被XSRF攻擊</li>
 </ul>
-<h2 id="▌安裝">▌安裝</h2>
+<h2 id="▌安裝"><a class="header-anchor" href="#▌安裝"></a>▌安裝</h2>
 <p>由於是第三方開發，所以要進行安裝</p>
 <ul>
 <li>npm</li>
@@ -273,19 +273,19 @@
 <p>我們來撈出口到照地圖的資料試試看回傳了什麼<br>
 <img src="https://i.imgur.com/GpoNwF4.png" alt=""><br>
 可以看到它回傳了一個物件，可以從這些物件找到想要的使用的資料</p>
-<h3 id="POST">POST</h3>
+<h3 id="POST"><a class="header-anchor" href="#POST"></a>POST</h3>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">axios.post(<span class="string">'url'</span>, &#123;</span><br><span class="line">    account: <span class="number">123</span>@mail.com,</span><br><span class="line">    password: <span class="string">'123123'</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(response);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
 <br>
-<h2 id="▌發出多個請求-axios-all-、axios-spread-接收資料">▌發出多個請求-axios.all([])、axios.spread()接收資料</h2>
+<h2 id="▌發出多個請求-axios-all-、axios-spread-接收資料"><a class="header-anchor" href="#▌發出多個請求-axios-all-、axios-spread-接收資料"></a>▌發出多個請求-axios.all([])、axios.spread()接收資料</h2>
 <p>這個也與Promise非常相似</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用函式retrun一個axios</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUserAccount</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> axios.get(<span class="string">'/user/12345'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUserPermissions</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> axios.get(<span class="string">'/user/12345/permissions'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//axios.all(用陣列列出要執行的請求)</span></span><br><span class="line">axios.all([getUserAccount(), getUserPermissions()])</span><br><span class="line">    <span class="comment">//成功用then接收，並用axios.spread()接收各請求的數據</span></span><br><span class="line">  .then(axios.spread(<span class="function"><span class="keyword">function</span> (<span class="params">acct, perms</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Both requests are now complete</span></span><br><span class="line">  &#125;));</span><br></pre></td></tr></table></figure>
 <br>
-<h3 id="GET">GET</h3>
+<h3 id="GET"><a class="header-anchor" href="#GET"></a>GET</h3>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">axios(&#123;</span><br><span class="line">    method: <span class="string">'get'</span>, <span class="comment">//預設式get,沒有大小之分</span></span><br><span class="line">    url: <span class="string">'https://api.user'</span>,<span class="comment">//請求網址，必填</span></span><br><span class="line">    baseURL: <span class="string">''</span>,<span class="comment">//直接加在url前面的絕對位置，在同個網域底下可以使用</span></span><br><span class="line">    params: &#123;<span class="attr">ID</span>:<span class="number">123</span>&#125;, <span class="comment">//url後要接的參數 url/ID=123</span></span><br><span class="line">    timeout: <span class="number">1000</span> <span class="comment">//逾時設定，超過這個時間就會被終止</span></span><br><span class="line">&#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res)</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">rej</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(rej)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="POST-2">POST</h3>
+<h3 id="POST-v2"><a class="header-anchor" href="#POST-v2"></a>POST</h3>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">axios(&#123;</span><br><span class="line">    method: <span class="string">'post'</span>,</span><br><span class="line">    url: <span class="string">'https://api.user'</span>,</span><br><span class="line">    data:&#123;<span class="comment">//傳送資料</span></span><br><span class="line">        account: <span class="string">'123@gmail.com'</span>,</span><br><span class="line">        password: <span class="number">123123</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res)</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">rej</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(rej)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
 <br>
-<h2 id="▌建立一個實例instance-axios-create">▌建立一個實例instance-axios.create({})</h2>
+<h2 id="▌建立一個實例instance-axios-create"><a class="header-anchor" href="#▌建立一個實例instance-axios-create"></a>▌建立一個實例instance-axios.create({})</h2>
 <p>我們可以建議一個新的instance，有自己的名字與config<br>
 就可以分門別類，整理自己要請求的API</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> instance = axios.create(&#123;</span><br><span class="line">  baseURL: <span class="string">'https://some-domain.com/api/'</span>,</span><br><span class="line">  timeout: <span class="number">1000</span>,</span><br><span class="line">  headers: &#123;<span class="string">'X-Custom-Header'</span>: <span class="string">'foobar'</span>&#125;</span><br><span class="line">&#125;);</span><br><span class="line">    instance.get(<span class="string">'url'</span>)</span><br></pre></td></tr></table></figure>
@@ -378,13 +378,13 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">【JS】學習筆記-用axios發送請求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#▌axios基本了解"><span class="nav-number">1.1.</span> <span class="nav-text">▌axios基本了解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌安裝"><span class="nav-number">1.2.</span> <span class="nav-text">▌安裝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#POST"><span class="nav-number">1.2.1.</span> <span class="nav-text">POST</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌發出多個請求-axios-all-、axios-spread-接收資料"><span class="nav-number">1.3.</span> <span class="nav-text">▌發出多個請求-axios.all([])、axios.spread()接收資料</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GET"><span class="nav-number">1.3.1.</span> <span class="nav-text">GET</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POST-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">POST</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌建立一個實例instance-axios-create"><span class="nav-number">1.4.</span> <span class="nav-text">▌建立一個實例instance-axios.create({})</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【JS】學習筆記-用axios發送請求"><span class="nav-number">1.</span> <span class="nav-text">【JS】學習筆記-用axios發送請求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#▌axios基本了解"><span class="nav-number">1.1.</span> <span class="nav-text">▌axios基本了解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌安裝"><span class="nav-number">1.2.</span> <span class="nav-text">▌安裝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#POST"><span class="nav-number">1.2.1.</span> <span class="nav-text">POST</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌發出多個請求-axios-all-、axios-spread-接收資料"><span class="nav-number">1.3.</span> <span class="nav-text">▌發出多個請求-axios.all([])、axios.spread()接收資料</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GET"><span class="nav-number">1.3.1.</span> <span class="nav-text">GET</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POST-v2"><span class="nav-number">1.3.2.</span> <span class="nav-text">POST</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌建立一個實例instance-axios-create"><span class="nav-number">1.4.</span> <span class="nav-text">▌建立一個實例instance-axios.create({})</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Auteur</p>
+  <p class="site-author-name" itemprop="name">Author</p>
   <div class="site-description" itemprop="description">這個網站記錄艾瑞森在前端森林的各種探索</div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -439,7 +439,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Auteur</span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>

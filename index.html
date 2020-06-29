@@ -184,7 +184,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Auteur">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="這個網站記錄艾瑞森在前端森林的各種探索">
     </span>
 
@@ -236,7 +236,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>【JS】學習筆記-用axios發送請求</h1>
+          <h1 id="【JS】學習筆記-用axios發送請求"><a class="header-anchor" href="#【JS】學習筆記-用axios發送請求"></a>【JS】學習筆記-用axios發送請求</h1>
 <p>axios的用法與XMLHttpReques相同，一樣是一個由客戶端向遠端請求(GET、POST)的方法，它是基於Promise開發的，也可支援Promise API</p>
           <!--noindex-->
             <div class="post-button">
@@ -268,7 +268,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Auteur">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="這個網站記錄艾瑞森在前端森林的各種探索">
     </span>
 
@@ -320,7 +320,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>【JS】Promise學習筆記-進階用法</h1>
+          <h1 id="【JS】Promise學習筆記-進階用法"><a class="header-anchor" href="#【JS】Promise學習筆記-進階用法"></a>【JS】Promise學習筆記-進階用法</h1>
 <p>上次做完Promise的基本用法，接下來筆記其他的用法</p>
           <!--noindex-->
             <div class="post-button">
@@ -352,7 +352,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Auteur">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="這個網站記錄艾瑞森在前端森林的各種探索">
     </span>
 
@@ -404,8 +404,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>【JS】Promise學習筆記-基礎用法</h1>
-<h2 id="▌前言">▌前言</h2>
+          <h1 id="【JS】Promise學習筆記-基礎用法"><a class="header-anchor" href="#【JS】Promise學習筆記-基礎用法"></a>【JS】Promise學習筆記-基礎用法</h1>
+<h2 id="▌前言"><a class="header-anchor" href="#▌前言"></a>▌前言</h2>
 <p>之前有說明Javascript是一個單線程的語言(同步語言)，一次只能做一件事情，所以我們有時候會使用一些非同步的webAPIs或是像Ajax。由於沒辦法知道這些非同步的任務何時會執行結束，又或者是會不會有發生錯誤行為。有些可能要等A非同步執行完才能執行B非同步任務，為了解決以上問題，可以透過JS ES6的物件Promise來處理這些非同步的任務。<br>
 <br></p>
           <!--noindex-->
@@ -438,7 +438,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Auteur">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="這個網站記錄艾瑞森在前端森林的各種探索">
     </span>
 
@@ -479,14 +479,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>【AJAX】用XMLHttpReques向遠端請求資料</h1>
-<h2 id="▌前言">▌前言</h2>
-<h3 id="▌JS是單線程語言-Single-Thread">▌JS是單線程語言 (Single Thread)</h3>
+          <h1 id="【AJAX】用XMLHttpReques向遠端請求資料"><a class="header-anchor" href="#【AJAX】用XMLHttpReques向遠端請求資料"></a>【AJAX】用XMLHttpReques向遠端請求資料</h1>
+<h2 id="▌前言"><a class="header-anchor" href="#▌前言"></a>▌前言</h2>
+<h3 id="▌JS是單線程語言-Single-Thread"><a class="header-anchor" href="#▌JS是單線程語言-Single-Thread"></a>▌JS是單線程語言 (Single Thread)</h3>
 <p>代表在JS同時間一次只能做一件事情，所有事情要排隊一個個執行。</p>
-<h3 id="▌不屬於單線程的範圍-非同步">▌不屬於單線程的範圍(非同步)</h3>
+<h3 id="▌不屬於單線程的範圍-非同步"><a class="header-anchor" href="#▌不屬於單線程的範圍-非同步"></a>▌不屬於單線程的範圍(非同步)</h3>
 <p>像setTimeout、Ajax、Promise是WebAPIs，就不是單線程，可以同時執行。</p>
 <hr>
-<h3 id="▌AJAX是什麼">▌AJAX是什麼?</h3>
+<h3 id="▌AJAX是什麼"><a class="header-anchor" href="#▌AJAX是什麼"></a>▌AJAX是什麼?</h3>
 <p><a href="https://zh.wikipedia.org/wiki/AJAX" target="_blank" rel="noopener">AJAX</a>又稱「Asynchronous JavaScript and XML」（非同步的JavaScript與XML技術）。<br>
 透過AJAX技術，可以向遠端的伺服器請求資料，但再發出請求的同時，並不會需要重整頁面。請求到資料後，可以再由前端進行整理，呈現出想要的資料。<br>
 例如可以到opendata找出想要的資料並使用。像之前做過的口罩地圖就是使用衛服部所提供資料，<a href="https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json" target="_blank" rel="noopener">Kiang 整理的Json檔案</a>進行資料請求，更新地圖資訊。比較常見的應用像是信箱的認證，確認是否有填寫錯誤，或是重複註冊等。</p>
@@ -524,7 +524,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Auteur">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="這個網站記錄艾瑞森在前端森林的各種探索">
     </span>
 
@@ -596,7 +596,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Auteur">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="這個網站記錄艾瑞森在前端森林的各種探索">
     </span>
 
@@ -637,7 +637,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>表單建立與認證</h1>
+          <h1 id="表單建立與認證"><a class="header-anchor" href="#表單建立與認證"></a>表單建立與認證</h1>
 <p>在學習前端時，表單也是相當重要的一環。<br>
 本篇記錄建立表單基礎，與欄位認證相關屬性。</p>
           <!--noindex-->
@@ -670,7 +670,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Auteur">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="這個網站記錄艾瑞森在前端森林的各種探索">
     </span>
 
@@ -711,7 +711,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1>【Sass】我要重新學Sass!</h1>
+          <h1 id="【Sass】我要重新學Sass"><a class="header-anchor" href="#【Sass】我要重新學Sass"></a>【Sass】我要重新學Sass!</h1>
 <p>第一篇文章就決定來寫Sass!</p>
 <p>因為工作的關係，斷斷續續會碰到一些些前端相關的工作，雖然不多。<br>
 而第一個建造的前端網站為活動的網站，為了應付這項工作，因此很快速地看了線上教學，很匆忙的吸收，很沒基礎的蓋了第一個網站。</p>
@@ -803,7 +803,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Auteur</p>
+  <p class="site-author-name" itemprop="name">Author</p>
   <div class="site-description" itemprop="description">這個網站記錄艾瑞森在前端森林的各種探索</div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -858,7 +858,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Auteur</span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>

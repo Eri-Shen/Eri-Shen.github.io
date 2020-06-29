@@ -194,7 +194,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Auteur">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="這個網站記錄艾瑞森在前端森林的各種探索">
     </span>
 
@@ -234,14 +234,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1>【AJAX】用XMLHttpReques向遠端請求資料</h1>
-<h2 id="▌前言">▌前言</h2>
-<h3 id="▌JS是單線程語言-Single-Thread">▌JS是單線程語言 (Single Thread)</h3>
+        <h1 id="【AJAX】用XMLHttpReques向遠端請求資料"><a class="header-anchor" href="#【AJAX】用XMLHttpReques向遠端請求資料"></a>【AJAX】用XMLHttpReques向遠端請求資料</h1>
+<h2 id="▌前言"><a class="header-anchor" href="#▌前言"></a>▌前言</h2>
+<h3 id="▌JS是單線程語言-Single-Thread"><a class="header-anchor" href="#▌JS是單線程語言-Single-Thread"></a>▌JS是單線程語言 (Single Thread)</h3>
 <p>代表在JS同時間一次只能做一件事情，所有事情要排隊一個個執行。</p>
-<h3 id="▌不屬於單線程的範圍-非同步">▌不屬於單線程的範圍(非同步)</h3>
+<h3 id="▌不屬於單線程的範圍-非同步"><a class="header-anchor" href="#▌不屬於單線程的範圍-非同步"></a>▌不屬於單線程的範圍(非同步)</h3>
 <p>像setTimeout、Ajax、Promise是WebAPIs，就不是單線程，可以同時執行。</p>
 <hr>
-<h3 id="▌AJAX是什麼">▌AJAX是什麼?</h3>
+<h3 id="▌AJAX是什麼"><a class="header-anchor" href="#▌AJAX是什麼"></a>▌AJAX是什麼?</h3>
 <p><a href="https://zh.wikipedia.org/wiki/AJAX" target="_blank" rel="noopener">AJAX</a>又稱「Asynchronous JavaScript and XML」（非同步的JavaScript與XML技術）。<br>
 透過AJAX技術，可以向遠端的伺服器請求資料，但再發出請求的同時，並不會需要重整頁面。請求到資料後，可以再由前端進行整理，呈現出想要的資料。<br>
 例如可以到opendata找出想要的資料並使用。像之前做過的口罩地圖就是使用衛服部所提供資料，<a href="https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json" target="_blank" rel="noopener">Kiang 整理的Json檔案</a>進行資料請求，更新地圖資訊。比較常見的應用像是信箱的認證，確認是否有填寫錯誤，或是重複註冊等。</p>
@@ -250,19 +250,19 @@
 </blockquote>
 <hr>
 <a id="more"></a>
-<h2 id="▌如何向伺服器請求資料">▌如何向伺服器請求資料?</h2>
+<h2 id="▌如何向伺服器請求資料"><a class="header-anchor" href="#▌如何向伺服器請求資料"></a>▌如何向伺服器請求資料?</h2>
 <p>我們可以使用<a href="https://developer.mozilla.org/zh-TW/docs/Web/API/XMLHttpRequest" target="_blank" rel="noopener">XMLHttpRequest</a>這個WebAPIs物件。</p>
 <blockquote>
 <p>AJAX不等於XMLHttpRequest，XMLHttpRequest只是一個可以做到AJAX的方式</p>
 </blockquote>
 <br>
-<h3 id="▌宣告XMLHttpReques">▌宣告XMLHttpReques</h3>
+<h3 id="▌宣告XMLHttpReques"><a class="header-anchor" href="#▌宣告XMLHttpReques"></a>▌宣告XMLHttpReques</h3>
 <p>首先，先宣告一個<code>XMLHttpRequest</code>物件</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br></pre></td></tr></table></figure>
 <p>來看看他有哪些屬性可以操作<br>
 <img src="https://i.imgur.com/Ue04rXa.png" alt=""><br>
 <br></p>
-<h3 id="▌查看目前狀態XMLHttpRequest-readyState">▌查看目前狀態XMLHttpRequest.readyState</h3>
+<h3 id="▌查看目前狀態XMLHttpRequest-readyState"><a class="header-anchor" href="#▌查看目前狀態XMLHttpRequest-readyState"></a>▌查看目前狀態XMLHttpRequest.readyState</h3>
 <p>XMLHttpRequest.readyState這個屬性會回傳目前的狀態</p>
 <table>
 <thead>
@@ -301,7 +301,7 @@
 </tbody>
 </table>
 <br>
-<h3 id="▌設定要請求的資料open">▌設定要請求的資料open()</h3>
+<h3 id="▌設定要請求的資料open"><a class="header-anchor" href="#▌設定要請求的資料open"></a>▌設定要請求的資料open()</h3>
 <p>宣告完物件之後，現在要設定要連結遠端伺服器的資料，使用open()這個方法。</p>
 <blockquote>
 <p>async：預設為true非同步，false為同步，選擇false會再資料還沒接收回來前都不會執行別的任務，這樣會破壞使用者體驗，不建議使用</p>
@@ -310,12 +310,12 @@
 <p>可以看到readyState顯示1，使用open()，尚未send()的階段<br>
 <img src="https://i.imgur.com/McWHXFk.png" alt=""><br>
 <br></p>
-<h3 id="▌送出設定好的資料到遠端伺服器進行請求send">▌送出設定好的資料到遠端伺服器進行請求send()</h3>
+<h3 id="▌送出設定好的資料到遠端伺服器進行請求send"><a class="header-anchor" href="#▌送出設定好的資料到遠端伺服器進行請求send"></a>▌送出設定好的資料到遠端伺服器進行請求send()</h3>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xhr.send(參數)</span><br><span class="line"><span class="comment">//因為使用GET的方式，所以不用傳遞參數</span></span><br><span class="line">xhr.send(<span class="literal">null</span>)<span class="comment">//預設參數是null</span></span><br></pre></td></tr></table></figure>
 <p>送出之後，這時候就要等一段時間等伺服器傳送資料<br>
 那要怎麼之道資料已經傳過來客戶端了呢?<br>
 <br></p>
-<h3 id="▌確認資料回來了，使用onload">▌確認資料回來了，使用onload</h3>
+<h3 id="▌確認資料回來了，使用onload"><a class="header-anchor" href="#▌確認資料回來了，使用onload"></a>▌確認資料回來了，使用onload</h3>
 <p>可以使用onload來執行資料回來之後的要做的事情<br>
 那我們就來看看接收到的xhr有什麼</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xhr.onload= <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(xhr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -421,13 +421,13 @@ xhr.responseText也有字串<br>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">【AJAX】用XMLHttpReques向遠端請求資料</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#▌前言"><span class="nav-number">1.1.</span> <span class="nav-text">▌前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#▌JS是單線程語言-Single-Thread"><span class="nav-number">1.1.1.</span> <span class="nav-text">▌JS是單線程語言 (Single Thread)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌不屬於單線程的範圍-非同步"><span class="nav-number">1.1.2.</span> <span class="nav-text">▌不屬於單線程的範圍(非同步)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌AJAX是什麼"><span class="nav-number">1.1.3.</span> <span class="nav-text">▌AJAX是什麼?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌如何向伺服器請求資料"><span class="nav-number">1.2.</span> <span class="nav-text">▌如何向伺服器請求資料?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#▌宣告XMLHttpReques"><span class="nav-number">1.2.1.</span> <span class="nav-text">▌宣告XMLHttpReques</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌查看目前狀態XMLHttpRequest-readyState"><span class="nav-number">1.2.2.</span> <span class="nav-text">▌查看目前狀態XMLHttpRequest.readyState</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌設定要請求的資料open"><span class="nav-number">1.2.3.</span> <span class="nav-text">▌設定要請求的資料open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌送出設定好的資料到遠端伺服器進行請求send"><span class="nav-number">1.2.4.</span> <span class="nav-text">▌送出設定好的資料到遠端伺服器進行請求send()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌確認資料回來了，使用onload"><span class="nav-number">1.2.5.</span> <span class="nav-text">▌確認資料回來了，使用onload</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【AJAX】用XMLHttpReques向遠端請求資料"><span class="nav-number">1.</span> <span class="nav-text">【AJAX】用XMLHttpReques向遠端請求資料</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#▌前言"><span class="nav-number">1.1.</span> <span class="nav-text">▌前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#▌JS是單線程語言-Single-Thread"><span class="nav-number">1.1.1.</span> <span class="nav-text">▌JS是單線程語言 (Single Thread)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌不屬於單線程的範圍-非同步"><span class="nav-number">1.1.2.</span> <span class="nav-text">▌不屬於單線程的範圍(非同步)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌AJAX是什麼"><span class="nav-number">1.1.3.</span> <span class="nav-text">▌AJAX是什麼?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌如何向伺服器請求資料"><span class="nav-number">1.2.</span> <span class="nav-text">▌如何向伺服器請求資料?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#▌宣告XMLHttpReques"><span class="nav-number">1.2.1.</span> <span class="nav-text">▌宣告XMLHttpReques</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌查看目前狀態XMLHttpRequest-readyState"><span class="nav-number">1.2.2.</span> <span class="nav-text">▌查看目前狀態XMLHttpRequest.readyState</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌設定要請求的資料open"><span class="nav-number">1.2.3.</span> <span class="nav-text">▌設定要請求的資料open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌送出設定好的資料到遠端伺服器進行請求send"><span class="nav-number">1.2.4.</span> <span class="nav-text">▌送出設定好的資料到遠端伺服器進行請求send()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌確認資料回來了，使用onload"><span class="nav-number">1.2.5.</span> <span class="nav-text">▌確認資料回來了，使用onload</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Auteur</p>
+  <p class="site-author-name" itemprop="name">Author</p>
   <div class="site-description" itemprop="description">這個網站記錄艾瑞森在前端森林的各種探索</div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -482,7 +482,7 @@ xhr.responseText也有字串<br>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Auteur</span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>
