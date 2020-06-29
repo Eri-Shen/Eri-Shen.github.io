@@ -46,12 +46,12 @@
   };
 </script>
 
-  <meta name="description" content="【JS】Promise學習筆記-基礎用法▌前言之前有說明Javascript是一個單線程的語言(同步語言)，一次只能做一件事情，所以我們有時候會使用一些非同步的webAPIs或是像Ajax。由於沒辦法知道這些非同步的任務何時會執行結束，又或者是會不會有發生錯誤行為。有些可能要等A非同步執行完才能執行B非同步任務，為了解決以上問題，可以透過JS ES6的物件Promise來處理這些非同步的任務。">
+  <meta name="description" content="【JS】Promise學習筆記-基礎用法 ▌前言 之前有說明Javascript是一個單線程的語言(同步語言)，一次只能做一件事情，所以我們有時候會使用一些非同步的webAPIs或是像Ajax。由於沒辦法知道這些非同步的任務何時會執行結束，又或者是會不會有發生錯誤行為。有些可能要等A非同步執行完才能執行B非同步任務，為了解決以上問題，可以透過JS ES6的物件Promise來處理這些非同步的任務。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【JS】Promise學習筆記-基礎用法">
 <meta property="og:url" content="http://yoursite.com/2020/05/08/%E3%80%90JS%E3%80%91Promise%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E5%9F%BA%E7%A4%8E%E7%94%A8%E6%B3%95/index.html">
 <meta property="og:site_name" content="艾瑞森的前端森林">
-<meta property="og:description" content="【JS】Promise學習筆記-基礎用法▌前言之前有說明Javascript是一個單線程的語言(同步語言)，一次只能做一件事情，所以我們有時候會使用一些非同步的webAPIs或是像Ajax。由於沒辦法知道這些非同步的任務何時會執行結束，又或者是會不會有發生錯誤行為。有些可能要等A非同步執行完才能執行B非同步任務，為了解決以上問題，可以透過JS ES6的物件Promise來處理這些非同步的任務。">
+<meta property="og:description" content="【JS】Promise學習筆記-基礎用法 ▌前言 之前有說明Javascript是一個單線程的語言(同步語言)，一次只能做一件事情，所以我們有時候會使用一些非同步的webAPIs或是像Ajax。由於沒辦法知道這些非同步的任務何時會執行結束，又或者是會不會有發生錯誤行為。有些可能要等A非同步執行完才能執行B非同步任務，為了解決以上問題，可以透過JS ES6的物件Promise來處理這些非同步的任務。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/95TOJAd.png">
 <meta property="og:image" content="https://i.imgur.com/Bj3fvnS.png">
@@ -240,55 +240,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="【JS】Promise學習筆記-基礎用法"><a href="#【JS】Promise學習筆記-基礎用法" class="headerlink" title="【JS】Promise學習筆記-基礎用法"></a>【JS】Promise學習筆記-基礎用法</h1><h2 id="▌前言"><a href="#▌前言" class="headerlink" title="▌前言"></a>▌前言</h2><p>之前有說明Javascript是一個單線程的語言(同步語言)，一次只能做一件事情，所以我們有時候會使用一些非同步的webAPIs或是像Ajax。由於沒辦法知道這些非同步的任務何時會執行結束，又或者是會不會有發生錯誤行為。有些可能要等A非同步執行完才能執行B非同步任務，為了解決以上問題，可以透過JS ES6的物件Promise來處理這些非同步的任務。<br><br></p>
+        <h1>【JS】Promise學習筆記-基礎用法</h1>
+<h2 id="▌前言">▌前言</h2>
+<p>之前有說明Javascript是一個單線程的語言(同步語言)，一次只能做一件事情，所以我們有時候會使用一些非同步的webAPIs或是像Ajax。由於沒辦法知道這些非同步的任務何時會執行結束，又或者是會不會有發生錯誤行為。有些可能要等A非同步執行完才能執行B非同步任務，為了解決以上問題，可以透過JS ES6的物件Promise來處理這些非同步的任務。<br>
+<br></p>
 <a id="more"></a>
-
-<h2 id="▌Promise的三種狀態"><a href="#▌Promise的三種狀態" class="headerlink" title="▌Promise的三種狀態"></a>▌Promise的三種狀態</h2><p>由於Promise可以幫助了解非同步的執行到哪裡，所以Promise有三種狀態</p>
+<h2 id="▌Promise的三種狀態">▌Promise的三種狀態</h2>
+<p>由於Promise可以幫助了解非同步的執行到哪裡，所以Promise有三種狀態</p>
 <ol>
 <li>pending未確認：還在執行中，未得到結果</li>
 <li>fulfilled已實現：非同步行為成功，成功後會回傳一個參數，用<code>.then</code>接收參數</li>
 <li>rejectrd被否決：非同步行為失敗，確認失敗後會回傳一個參數，用<code>catch</code>接收參數</li>
 </ol>
 <p>透過了解Promise的狀態，可以讓我們決定要在甚麼狀態做哪些事情。</p>
-<h2 id="▌Promise基本了解"><a href="#▌Promise基本了解" class="headerlink" title="▌Promise基本了解"></a>▌Promise基本了解</h2><p>它是屬於<strong>建構函式</strong>，來看一下它有哪些</p>
+<h2 id="▌Promise基本了解">▌Promise基本了解</h2>
+<p>它是屬於<strong>建構函式</strong>，來看一下它有哪些</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promiseTest = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(promiseTest);</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.imgur.com/95TOJAd.png" alt=""></p>
 <ul>
-<li>可以看到它在</li>
-</ul>
-<ul>
+<li>可以看到它在<br>
+[PromiseStatus]: “pending”<br>
+[PromiseValue]: undefined</li>
 <li>有then、catch、finally方法可以用</li>
 </ul>
 <blockquote>
 <p>const promiseTest = new Promise()不可運行會跳錯，因為Promise要在一個callback function</p>
 </blockquote>
 <br>
-
-<h2 id="▌Promise成功-執行resolve-，用then-接收"><a href="#▌Promise成功-執行resolve-，用then-接收" class="headerlink" title="▌Promise成功-執行resolve()，用then()接收"></a>▌Promise成功-執行resolve()，用then()接收</h2><p>當非同步成功時，可以讓它執行resolve</p>
+<h2 id="▌Promise成功-執行resolve-，用then-接收">▌Promise成功-執行resolve()，用then()接收</h2>
+<p>當非同步成功時，可以讓它執行resolve</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promiseTest = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">    resolve(<span class="string">'非同步成功'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(promiseTest);</span><br></pre></td></tr></table></figure>
-
 <p><img src="https://i.imgur.com/Bj3fvnS.png" alt=""></p>
 <p>可以看到它在</p>
 <ul>
 <li>PromiseStatus: “resolved”</li>
-<li>PromiseValue: 非同步成功 -&gt;這邊的內容就是<code>resolve(&#39;非同步成功&#39;)</code>傳出的值</li>
+<li>PromiseValue: 非同步成功 -&gt;這邊的內容就是<code>resolve('非同步成功')</code>傳出的值</li>
 </ul>
 <p>傳出的值就用<code>.then()</code>接收</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promiseTest = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">    resolve(<span class="string">'非同步成功'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(promiseTest);</span><br><span class="line">promiseTest.then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'res是'</span>+res)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/2FeQQRS.png" alt=""><br><br></p>
-<p>可以看到resolve(‘非同步成功’)的值透過then()裡的callback function來接收，並console出來。<br><br></p>
-<h2 id="▌Promise失敗-執行reject-，用catch-接收"><a href="#▌Promise失敗-執行reject-，用catch-接收" class="headerlink" title="▌Promise失敗-執行reject()，用catch()接收"></a>▌Promise失敗-執行reject()，用catch()接收</h2><p>它的用法resolve非常相像，改為用catch接收資料</p>
+<p><img src="https://i.imgur.com/2FeQQRS.png" alt=""><br>
+<br></p>
+<p>可以看到resolve(‘非同步成功’)的值透過then()裡的callback function來接收，並console出來。<br>
+<br></p>
+<h2 id="▌Promise失敗-執行reject-，用catch-接收">▌Promise失敗-執行reject()，用catch()接收</h2>
+<p>它的用法resolve非常相像，改為用catch接收資料</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promiseTest = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">    reject(<span class="string">'非同步失敗'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(promiseTest);</span><br><span class="line">promiseTest.catch(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'res是'</span>+res)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/8R3PeI7.png" alt=""><br><br></p>
-<p>:::danger<br>resolve與reject只會有一種狀態<br>:::</p>
-<h2 id="▌注意-將Promise作為函式使用"><a href="#▌注意-將Promise作為函式使用" class="headerlink" title="▌注意:將Promise作為函式使用"></a>▌注意:將Promise作為函式使用</h2><p>我們將Promise設計成一個函式，當需要使用的時候，不用每次都宣告一個Promise物件，讓它執行函式，並retrun一個Promise，如下：</p>
+<p><img src="https://i.imgur.com/8R3PeI7.png" alt=""><br>
+<br></p>
+<p>:::danger<br>
+resolve與reject只會有一種狀態<br>
+:::</p>
+<h2 id="▌注意-將Promise作為函式使用">▌注意:將Promise作為函式使用</h2>
+<p>我們將Promise設計成一個函式，當需要使用的時候，不用每次都宣告一個Promise物件，讓它執行函式，並retrun一個Promise，如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PromiseFn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>再做一個範例吧！以XMLHttpReques以請求為例</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PromiseFn</span>(<span class="params">method,url,async</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> xhr = <span class="keyword">new</span> XMLHttpReques();</span><br><span class="line">        xhr.open(<span class="string">'method'</span>,<span class="string">'url'</span>,<span class="keyword">async</span>);</span><br><span class="line">        xhr.send(<span class="literal">null</span>);</span><br><span class="line">        xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(xhr..readyState == <span class="number">4</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(xhr.status == <span class="number">200</span>)&#123;</span><br><span class="line">                    resolve(xhr.response);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    reject(<span class="string">'失敗'</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PromiseFn(GET,<span class="string">'https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json'</span>,<span class="literal">true</span>)</span><br><span class="line">    .then(<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> ajaxJSON = <span class="built_in">JSON</span>.parse(res);</span><br><span class="line">            <span class="built_in">console</span>.log(ajaxJSON);</span><br><span class="line">            <span class="built_in">console</span>.log(res);</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch(<span class="function">(<span class="params">rej</span>)=&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(rej);</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
 <p>這樣就可以調用這個函式，多次使用。</p>
 <br>
-
-<p>參考資料:<br>*<a href="https://wcc723.github.io/development/2020/02/16/all-new-promise/" target="_blank" rel="noopener">JavaScript Promise 全介紹</a></p>
+<p>參考資料:<br>
+*<a href="https://wcc723.github.io/development/2020/02/16/all-new-promise/" target="_blank" rel="noopener">JavaScript Promise 全介紹</a></p>
 
     </div>
 
@@ -373,7 +383,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【JS】Promise學習筆記-基礎用法"><span class="nav-number">1.</span> <span class="nav-text">【JS】Promise學習筆記-基礎用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#▌前言"><span class="nav-number">1.1.</span> <span class="nav-text">▌前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌Promise的三種狀態"><span class="nav-number">1.2.</span> <span class="nav-text">▌Promise的三種狀態</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌Promise基本了解"><span class="nav-number">1.3.</span> <span class="nav-text">▌Promise基本了解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌Promise成功-執行resolve-，用then-接收"><span class="nav-number">1.4.</span> <span class="nav-text">▌Promise成功-執行resolve()，用then()接收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌Promise失敗-執行reject-，用catch-接收"><span class="nav-number">1.5.</span> <span class="nav-text">▌Promise失敗-執行reject()，用catch()接收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌注意-將Promise作為函式使用"><span class="nav-number">1.6.</span> <span class="nav-text">▌注意:將Promise作為函式使用</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">【JS】Promise學習筆記-基礎用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#▌前言"><span class="nav-number">1.1.</span> <span class="nav-text">▌前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌Promise的三種狀態"><span class="nav-number">1.2.</span> <span class="nav-text">▌Promise的三種狀態</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌Promise基本了解"><span class="nav-number">1.3.</span> <span class="nav-text">▌Promise基本了解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌Promise成功-執行resolve-，用then-接收"><span class="nav-number">1.4.</span> <span class="nav-text">▌Promise成功-執行resolve()，用then()接收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌Promise失敗-執行reject-，用catch-接收"><span class="nav-number">1.5.</span> <span class="nav-text">▌Promise失敗-執行reject()，用catch()接收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌注意-將Promise作為函式使用"><span class="nav-number">1.6.</span> <span class="nav-text">▌注意:將Promise作為函式使用</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

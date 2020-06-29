@@ -230,15 +230,18 @@
       
         <p>在進行一個前端網頁專案時，會產生相當多的文件，數個html、js、sass，還有相當多的圖片。而我們在撰寫sass或是ES6的JS，對於一些版本較低的瀏覽器，都會有不支援情況，因此我們可以透「gulp」這個前端自動化工具，幫我們執行像是自動加入css前綴詞，將ES6的語法降轉到較舊的版本，寫可以將多個CSS、JS檔案合併成一支、壓縮成一行、壓縮圖片等等，許多功能。</p>
 <a id="more"></a>
-
-<h2 id="全域安裝"><a href="#全域安裝" class="headerlink" title="全域安裝"></a>全域安裝</h2><p>首先將電腦安裝gulp，在安裝gulp之前要先安裝<mark>node.js</mark>，因為gulp是基於node.js開發出來的，並順便安裝npm(套件管理工具)<br>確認node.js與npm之後就可以安裝全域的gulp(電腦安裝一次即可，讓電腦可以使用gulp指令)。</p>
+<h2 id="全域安裝">全域安裝</h2>
+<p>首先將電腦安裝gulp，在安裝gulp之前要先安裝<mark>node.js</mark>，因為gulp是基於node.js開發出來的，並順便安裝npm(套件管理工具)<br>
+確認node.js與npm之後就可以安裝全域的gulp(電腦安裝一次即可，讓電腦可以使用gulp指令)。</p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install --<span class="built_in">global</span> gulp</span><br></pre></td></tr></table></figure>
-
-<h2 id="專案安裝"><a href="#專案安裝" class="headerlink" title="專案安裝"></a>專案安裝</h2><p>接下來新建專案資料夾，我叫它gulp-learning</p>
+<h2 id="專案安裝">專案安裝</h2>
+<p>接下來新建專案資料夾，我叫它gulp-learning</p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> init</span><br><span class="line"><span class="built_in">npm</span> install gulp</span><br></pre></td></tr></table></figure>
-<p>安裝完會有三個檔<br><img src="https://i.imgur.com/WkGK4sl.png" alt=""></p>
-<h2 id="gulp如何運作，有哪些方法"><a href="#gulp如何運作，有哪些方法" class="headerlink" title="gulp如何運作，有哪些方法"></a>gulp如何運作，有哪些方法</h2><p>gulp的執行方式為</p>
-<p>資料來源資料夾-&gt;執行任務-&gt;執行任務-&gt;….-&gt;輸出到指定資料夾</p>
+<p>安裝完會有三個檔<br>
+<img src="https://i.imgur.com/WkGK4sl.png" alt=""></p>
+<h2 id="gulp如何運作，有哪些方法">gulp如何運作，有哪些方法</h2>
+<p>gulp的執行方式為</p>
+<p>資料來源資料夾-&gt;執行任務-&gt;執行任務-&gt;…-&gt;輸出到指定資料夾</p>
 <p>中間的任務就是我們想要自動化的事情</p>
 <p>gulp有以下幾種方法可以使用</p>
 <table>
@@ -248,7 +251,8 @@
 <th>說明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>gulp.task()</td>
 <td>執行任務(‘取任務名’,function(){要執行的任務})</td>
 </tr>
@@ -272,23 +276,35 @@
 <td>gulp.parallel()</td>
 <td>同時執行任務</td>
 </tr>
-</tbody></table>
-<h2 id="撰寫gulp-js"><a href="#撰寫gulp-js" class="headerlink" title="撰寫gulp.js"></a>撰寫gulp.js</h2><p>先建立一個新的檔案，名叫gulpfile.js(一定要叫這個名稱哦)的檔案</p>
-<h3 id="1-建立一個任務"><a href="#1-建立一個任務" class="headerlink" title="1. 建立一個任務"></a>1. 建立一個任務</h3><p>先宣告要引入的套件var gulp = require(‘gulp’); </p>
+</tbody>
+</table>
+<h2 id="撰寫gulp-js">撰寫gulp.js</h2>
+<p>先建立一個新的檔案，名叫gulpfile.js(一定要叫這個名稱哦)的檔案</p>
+<h3 id="1-建立一個任務">1. 建立一個任務</h3>
+<p>先宣告要引入的套件var gulp = require(‘gulp’);</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);  <span class="comment">//宣告引入gulp套件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個任務</span></span><br><span class="line">gulp.task(<span class="string">'任務名稱'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//要執行的動作</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p><strong>範例</strong><br>建立一個名為’hellogulp’的任務，此任務會在console印出’helloGulp’</p>
+<p><strong>範例</strong><br>
+建立一個名為’hellogulp’的任務，此任務會在console印出’helloGulp’</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'hellogulp'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'helloGulp'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>要如何執行它呢?<br>在CMD打上<mark>gulp hellogulp</mark>指令<br>可以看到執行結果<br><img src="https://i.imgur.com/c9kRTbH.png" alt=""><br>這樣就是有順利執行任務</p>
-<h3 id="2-尋找需要的套件，並建立任務"><a href="#2-尋找需要的套件，並建立任務" class="headerlink" title="2. 尋找需要的套件，並建立任務"></a>2. 尋找需要的套件，並建立任務</h3><p>在本文最一開始有提到，gulp可以執行像是將sass轉為css，自動補上前綴詞等等，但這些其實都是他人開發好的套件，這些套件可以在<a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm</a>中尋找，並依序套件說明執行。<br>以下以可以幫助我們將sass轉成css的gulp-sass套件為例</p>
+<p>要如何執行它呢?<br>
+在CMD打上<mark>gulp hellogulp</mark>指令<br>
+可以看到執行結果<br>
+<img src="https://i.imgur.com/c9kRTbH.png" alt=""><br>
+這樣就是有順利執行任務</p>
+<h3 id="2-尋找需要的套件，並建立任務">2. 尋找需要的套件，並建立任務</h3>
+<p>在本文最一開始有提到，gulp可以執行像是將sass轉為css，自動補上前綴詞等等，但這些其實都是他人開發好的套件，這些套件可以在<a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm</a>中尋找，並依序套件說明執行。<br>
+以下以可以幫助我們將sass轉成css的gulp-sass套件為例</p>
 <blockquote>
 <p>gulp-sass官方文件:<a href="https://www.npmjs.com/package/gulp-sass" target="_blank" rel="noopener">gulp-sass</a></p>
 </blockquote>
 <p>首先先安裝套件</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="keyword">node</span><span class="title">-sass</span> gulp-sass --save-dev</span><br></pre></td></tr></table></figure>
-<p>安裝之後可以到package.json，看到自己安裝那些套件與版本<br><img src="https://i.imgur.com/65tIO13.png" alt=""><br>接下來我們照著官方文件說明，複製貼上</p>
+<p>安裝之後可以到package.json，看到自己安裝那些套件與版本<br>
+<img src="https://i.imgur.com/65tIO13.png" alt=""><br>
+接下來我們照著官方文件說明，複製貼上</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//宣告套件</span></span><br><span class="line"><span class="keyword">var</span> sass = <span class="built_in">require</span>(<span class="string">'gulp-sass'</span>);</span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立名為sass的任務，下gulp sass指令可以啟動任務</span></span><br><span class="line">gulp.task(<span class="string">'sass'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> gulp.src(<span class="string">'./sass/**/*.scss'</span>)<span class="comment">//資料來源，sass資料夾裡所有的scss檔</span></span><br><span class="line">    .pipe(sass().on(<span class="string">'error'</span>, sass.logError))<span class="comment">//將sass轉為css檔</span></span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./css'</span>));<span class="comment">//輸出到指定資料夾</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立名為sass:watch的任務，下gulp sass:watch指令，當'./sass/**/*.scss'檔案發生改變，會執行sass任務</span></span><br><span class="line">gulp.task(<span class="string">'sass:watch'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  gulp.watch(<span class="string">'./sass/**/*.scss'</span>, [<span class="string">'sass'</span>]);</span><br><span class="line">            <span class="comment">//('要監控的檔案',要執行的任務，可以為多個，用這陣列表示)</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>此篇記錄基本的gulp安裝與建立任務，<br>之後將整理常用的gulp套件。</p>
+<p>此篇記錄基本的gulp安裝與建立任務，<br>
+之後將整理常用的gulp套件。</p>
 <hr>
 <p>參考資料</p>
 <ul>

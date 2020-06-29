@@ -46,12 +46,12 @@
   };
 </script>
 
-  <meta name="description" content="表單建立與認證在學習前端時，表單也是相當重要的一環。本篇記錄建立表單基礎，與欄位認證相關屬性。">
+  <meta name="description" content="表單建立與認證 在學習前端時，表單也是相當重要的一環。 本篇記錄建立表單基礎，與欄位認證相關屬性。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="表單建立與認證">
 <meta property="og:url" content="http://yoursite.com/2020/04/25/%E8%A1%A8%E5%96%AE%E5%BB%BA%E7%AB%8B%E8%88%87%E8%AA%8D%E8%AD%89/index.html">
 <meta property="og:site_name" content="艾瑞森的前端森林">
-<meta property="og:description" content="表單建立與認證在學習前端時，表單也是相當重要的一環。本篇記錄建立表單基礎，與欄位認證相關屬性。">
+<meta property="og:description" content="表單建立與認證 在學習前端時，表單也是相當重要的一環。 本篇記錄建立表單基礎，與欄位認證相關屬性。">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/IxYtPwI.png">
 <meta property="og:image" content="https://i.imgur.com/wVsBX8I.png">
@@ -228,20 +228,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="表單建立與認證"><a href="#表單建立與認證" class="headerlink" title="表單建立與認證"></a>表單建立與認證</h1><p>在學習前端時，表單也是相當重要的一環。<br>本篇記錄建立表單基礎，與欄位認證相關屬性。</p>
+        <h1>表單建立與認證</h1>
+<p>在學習前端時，表單也是相當重要的一環。<br>
+本篇記錄建立表單基礎，與欄位認證相關屬性。</p>
 <a id="more"></a>
-
-<h2 id="建立表單"><a href="#建立表單" class="headerlink" title="建立表單"></a>建立表單</h2><ol>
-<li><p>可以透過<form>建立表單，使用action屬性來指定要資料傳到何處</p>
+<h2 id="建立表單">建立表單</h2>
+<ol>
+<li>可以透過<form>建立表單，使用action屬性來指定要資料傳到何處</li>
+</ol>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"www.abc.tw"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>表單內的組成三元素 lable、input、button</p>
-</li>
+<ol start="2">
+<li>表單內的組成三元素 lable、input、button</li>
 </ol>
 <p><strong>lable</strong>：用來標示填入的資訊，可以用for屬性綁定對應的input</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"www.abc.tw"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">lable</span> <span class="attr">for</span>=<span class="string">"name"</span>&gt;</span>姓名：<span class="tag">&lt;/<span class="name">lable</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
 <hr>
 <p><strong>input</strong>：表單的選項，有相當多種type，下表列出幾種常見的，制定name這個屬性來傳指定的值給後端。</p>
 <table>
@@ -251,7 +251,8 @@
 <th>用途</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>button</td>
 <td>普通的按鈕</td>
 </tr>
@@ -265,17 +266,15 @@
 </tr>
 <tr>
 <td>password</td>
-<td>填入密碼使用，打上文字會變<strong>***</strong></td>
+<td>填入密碼使用，打上文字會變*******</td>
 </tr>
 <tr>
 <td>text</td>
 <td>普通的輸入文字</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"www.abc.tw"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">lable</span> <span class="attr">for</span>=<span class="string">"name"</span>&gt;</span>姓名：<span class="tag">&lt;/<span class="name">lable</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">type</span>=<span class="string">"text"</span>　<span class="attr">id</span>=<span class="string">"name(用來綁定lable的for)"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
 <hr>
 <p><strong>button</strong>：可以是送出表單的按鈕、或是重設，type有三種，如下</p>
 <table>
@@ -285,7 +284,8 @@
 <th>用途</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>button</td>
 <td>普通常見的按鈕</td>
 </tr>
@@ -297,39 +297,45 @@
 <td>submit</td>
 <td>送出表單到後端，url會後面加上?帶上input所設定得參數</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"www.abc.tw"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">lable</span> <span class="attr">for</span>=<span class="string">"name"</span>&gt;</span>姓名：<span class="tag">&lt;/<span class="name">lable</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">type</span>=<span class="string">"text"</span>　<span class="attr">id</span>=<span class="string">"name(用來綁定lable的for)"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span> =<span class="string">"reset"</span>&gt;</span>清除<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span> =<span class="string">"submit"</span>&gt;</span>送出<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <hr>
-<h2 id="表單設定與驗證"><a href="#表單設定與驗證" class="headerlink" title="表單設定與驗證"></a>表單設定與驗證</h2><ol>
-<li>必選-加上required<blockquote>
+<h2 id="表單設定與驗證">表單設定與驗證</h2>
+<ol>
+<li>必選-加上required</li>
+</ol>
+<blockquote>
 <p>required屬性適用於以下<input>類型：text, search, url, telephone, email, password, date pickers, number, checkbox, radio以及file。</p>
 </blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如果是check或是radio，相同name的input，只要寫一個required就可以代表全部群組</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>　<span class="attr">id</span>=<span class="string">"name(用來綁定lable的for)"</span> <span class="attr">value</span>=<span class="string">"male"</span> <span class="attr">required</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>　<span class="attr">id</span>=<span class="string">"name(用來綁定lable的for)"</span> <span class="attr">value</span>=<span class="string">"female"</span> <span class="attr">required</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<img src="https://i.imgur.com/IxYtPwI.png" alt=""></li>
-</ol>
-<hr>
+<h2 id="￼4"><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如果是check或是radio，相同name的input，只要寫一個required就可以代表全部群組</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>　<span class="attr">id</span>=<span class="string">"name(用來綁定lable的for)"</span> <span class="attr">value</span>=<span class="string">"male"</span> <span class="attr">required</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>　<span class="attr">id</span>=<span class="string">"name(用來綁定lable的for)"</span> <span class="attr">value</span>=<span class="string">"female"</span> <span class="attr">required</span>&gt;</span></span><br></pre></td></tr></table></figure><br>
+<img src="https://i.imgur.com/IxYtPwI.png" alt=""></h2>
 <ol start="2">
 <li>驗證密碼是否符合</li>
 </ol>
 <ul>
-<li><p>eamil：屬性選擇type=”mail”即可<br><img src="https://i.imgur.com/wVsBX8I.png" alt=""></p>
+<li>
+<p>eamil：屬性選擇type=&quot;mail&quot;即可<br>
+<img src="https://i.imgur.com/wVsBX8I.png" alt=""></p>
 </li>
-<li><p>有限制密碼：使用pattern屬性，裡面需填寫成＂正規表達式（Regular Express，搭配title屬性表示要給使用者的說明<br><img src="https://i.imgur.com/6Apm1ve.png" alt=""></p>
+<li>
+<p>有限制密碼：使用pattern屬性，裡面需填寫成＂正規表達式（Regular Express，搭配title屬性表示要給使用者的說明<br>
+<img src="https://i.imgur.com/6Apm1ve.png" alt=""></p>
 </li>
 </ul>
 <blockquote>
-<p>正規表達式寫法參考：<br><a href="https://medium.com/@moojing/javascript-%E5%88%9D%E6%8E%A2regex-%E6%AD%A3%E8%A6%8F%E8%A1%A8%E9%81%94%E5%BC%8F-1da2f4d94795" target="_blank" rel="noopener">[Javascript] 初探Regex 正規表達式</a><br><a href="https://blog.miniasp.com/post/2008/05/09/Using-Regular-Expression-to-validate-password" target="_blank" rel="noopener">使用Regular Expression 驗證密碼複雜度| The Will Will Web</a></p>
+<p>正規表達式寫法參考：<br>
+<a href="https://medium.com/@moojing/javascript-%E5%88%9D%E6%8E%A2regex-%E6%AD%A3%E8%A6%8F%E8%A1%A8%E9%81%94%E5%BC%8F-1da2f4d94795" target="_blank" rel="noopener">[Javascript] 初探Regex 正規表達式</a><br>
+<a href="https://blog.miniasp.com/post/2008/05/09/Using-Regular-Expression-to-validate-password" target="_blank" rel="noopener">使用Regular Expression 驗證密碼複雜度| The Will Will Web</a></p>
 </blockquote>
 <ul>
-<li>長度要求：屬性 minlength=””， maxlength=””<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">lable</span> <span class="attr">for</span>=<span class="string">"password"</span>&gt;</span>密碼：<span class="tag">&lt;/<span class="name">lable</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"textinput"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">placeholder</span>=<span class="string">"密碼應含一個特殊符號、一個英文大寫、一個數字，8-20碼"</span> <span class="attr">required</span> <span class="attr">pattern</span>=<span class="string">"^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).&#123;8,20&#125;$"</span> <span class="attr">minlength</span>=<span class="string">"8"</span> <span class="attr">maxlength</span>=<span class="string">"20"</span> <span class="attr">title</span>=<span class="string">"密碼應含一個特殊符號、一個英文大寫、一個數字，8-20碼"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
+<li>長度要求：屬性 minlength=“”， maxlength=“”</li>
 </ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">lable</span> <span class="attr">for</span>=<span class="string">"password"</span>&gt;</span>密碼：<span class="tag">&lt;/<span class="name">lable</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"textinput"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">placeholder</span>=<span class="string">"密碼應含一個特殊符號、一個英文大寫、一個數字，8-20碼"</span> <span class="attr">required</span> <span class="attr">pattern</span>=<span class="string">"^(?=.*\d)(?=.*[a-zA-Z])(?=.*\W).&#123;8,20&#125;$"</span> <span class="attr">minlength</span>=<span class="string">"8"</span> <span class="attr">maxlength</span>=<span class="string">"20"</span> <span class="attr">title</span>=<span class="string">"密碼應含一個特殊符號、一個英文大寫、一個數字，8-20碼"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <hr>
 <p>參考資料:</p>
 <ul>
-<li><a href="https://www.w3school.com.cn/html5/att_input_required.asp" target="_blank" rel="noopener">HTML 5 input標籤required 屬性
+<li><a href="https://www.w3school.com.cn/html5/att_input_required.asp" target="_blank" rel="noopener">HTML 5 input標籤required 屬性<br>
 </a></li>
 <li><a href="https://www.w3schools.com/html/html_form_attributes.asp" target="_blank" rel="noopener">HTML 輸入屬性</a></li>
 </ul>
@@ -417,7 +423,17 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#表單建立與認證"><span class="nav-number">1.</span> <span class="nav-text">表單建立與認證</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立表單"><span class="nav-number">1.1.</span> <span class="nav-text">建立表單</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表單設定與驗證"><span class="nav-number">1.2.</span> <span class="nav-text">表單設定與驗證</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">表單建立與認證</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立表單"><span class="nav-number">1.1.</span> <span class="nav-text">建立表單</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表單設定與驗證"><span class="nav-number">1.2.</span> <span class="nav-text">表單設定與驗證</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#￼4"><span class="nav-number">1.3.</span> <span class="nav-text">1
+2
+3
+4
+如果是check或是radio，相同name的input，只要寫一個required就可以代表全部群組
+
+&lt;input name&#x3D;&quot;name&quot; type&#x3D;&quot;checkbox&quot;　id&#x3D;&quot;name(用來綁定lable的for)&quot; value&#x3D;&quot;male&quot; required&gt;
+&lt;input name&#x3D;&quot;name&quot; type&#x3D;&quot;checkbox&quot;　id&#x3D;&quot;name(用來綁定lable的for)&quot; value&#x3D;&quot;female&quot; required&gt;
+
+
+</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
