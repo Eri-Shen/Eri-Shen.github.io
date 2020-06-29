@@ -21,10 +21,10 @@
   var CONFIG = {
     hostname: new URL('http://yoursite.com').hostname,
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '7.7.0',
     exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":true,"show_result":true,"style":"default"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -46,17 +46,17 @@
   };
 </script>
 
-  <meta name="description" content="Vue Component 元件 基本用法▌前言 用vue開發網頁就可以想成將網頁拆成好幾個元件，我們在分別去控制元件的，上圖取自vue官方網站，最上面就是root，下方接好幾個不同的元件我們用vue開法者工具看 可以看到root的下方接了這個名稱的原件，而我們可以分別、獨立的去控制這些元件的html、css、js、資料等等">
+  <meta name="description" content="Vue Component 元件 基本用法 ▌前言">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Vue】Vue Component 元件 基本用法">
 <meta property="og:url" content="http://yoursite.com/2020/05/21/%E3%80%90Vue%E3%80%91Component%20%E5%85%83%E4%BB%B6%20%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/index.html">
 <meta property="og:site_name" content="艾瑞森的前端森林">
-<meta property="og:description" content="Vue Component 元件 基本用法▌前言 用vue開發網頁就可以想成將網頁拆成好幾個元件，我們在分別去控制元件的，上圖取自vue官方網站，最上面就是root，下方接好幾個不同的元件我們用vue開法者工具看 可以看到root的下方接了這個名稱的原件，而我們可以分別、獨立的去控制這些元件的html、css、js、資料等等">
+<meta property="og:description" content="Vue Component 元件 基本用法 ▌前言">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://i.imgur.com/W1FuPJL.png">
 <meta property="og:image" content="https://i.imgur.com/TJTxTkT.png">
 <meta property="article:published_time" content="2020-05-21T14:05:04.000Z">
-<meta property="article:modified_time" content="2020-06-02T14:18:51.684Z">
+<meta property="article:modified_time" content="2020-06-29T02:46:42.504Z">
 <meta property="article:author" content="Eri Shen">
 <meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
@@ -213,7 +213,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-06-02 22:18:51" itemprop="dateModified" datetime="2020-06-02T22:18:51+08:00">2020-06-02</time>
+                <time title="修改時間：2020-06-29 10:46:42" itemprop="dateModified" datetime="2020-06-29T10:46:42+08:00">2020-06-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,36 +238,53 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Vue-Component-元件-基本用法"><a href="#Vue-Component-元件-基本用法" class="headerlink" title="Vue Component 元件 基本用法"></a>Vue Component 元件 基本用法</h1><h2 id="▌前言"><a href="#▌前言" class="headerlink" title="▌前言"></a>▌前言</h2><p><img src="https://i.imgur.com/W1FuPJL.png" alt=""></p>
-<p>用vue開發網頁就可以想成將網頁拆成好幾個元件，我們在分別去控制元件的，上圖取自vue官方網站，最上面就是root，下方接好幾個不同的元件<br>我們用vue開法者工具看<br><img src="https://i.imgur.com/TJTxTkT.png" alt=""></p>
-<p>可以看到root的下方接了<Photo>這個名稱的原件，而我們可以分別、獨立的去控制這些元件的html、css、js、資料等等</p>
+        <h1>Vue Component 元件 基本用法</h1>
+<h2 id="▌前言">▌前言</h2>
+<p><img src="https://i.imgur.com/W1FuPJL.png" alt=""></p>
 <a id="more"></a>
-
-<h2 id="▌宣告Vue-Component"><a href="#▌宣告Vue-Component" class="headerlink" title="▌宣告Vue Component"></a>▌宣告Vue Component</h2><p>vue也長的很像一開始我們在宣告的vue app，一樣都有data、methods..等等這些屬性<br>下面是普通vue app宣告</p>
+<p>用vue開發網頁就可以想成將網頁拆成好幾個元件，我們在分別去控制元件的，上圖取自vue官方網站，最上面就是root，下方接好幾個不同的元件<br>
+我們用vue開法者工具看<br>
+<img src="https://i.imgur.com/TJTxTkT.png" alt=""></p>
+<p>可以看到root的下方接了<Photo>這個名稱的原件，而我們可以分別、獨立的去控制這些元件的html、css、js、資料等等</p>
+<h2 id="▌宣告Vue-Component">▌宣告Vue Component</h2>
+<p>vue也長的很像一開始我們在宣告的vue app，一樣都有data、methods…等等這些屬性<br>
+下面是普通vue app宣告</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&#39;app&#39;&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">var app &#x3D; new Vue(&#123;</span><br><span class="line">    el: &#39;#app&#39;,</span><br><span class="line">    data: &#123;&#125;,</span><br><span class="line">    methods: &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>Vue Component的宣告有兩種，分別是全域以及部分宣告</p>
-<h3 id="▌全域宣告"><a href="#▌全域宣告" class="headerlink" title="▌全域宣告"></a>▌全域宣告</h3><p>全域宣告使用<code>Vue.component()</code>來宣告一個vue元件<br>()裡面會接兩個參數，第一個是「元件的名稱」，第二個是「相關資料」，為一個物件。<code>template</code>裡面放html，也就是之後在html渲染出的樣子</p>
+<h3 id="▌全域宣告">▌全域宣告</h3>
+<p>全域宣告使用<code>Vue.component()</code>來宣告一個vue元件<br>
+()裡面會接兩個參數，第一個是「元件的名稱」，第二個是「相關資料」，為一個物件。<code>template</code>裡面放html，也就是之後在html渲染出的樣子</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;利用像是html的標籤，就可以使用這個元件</span><br><span class="line">&lt;button-counter&gt;&lt;&#x2F;button-counter&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;宣告</span><br><span class="line">Vue.component(&#39;button-counter--元件的名稱&#39;, &#123;</span><br><span class="line">  data: function () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      count: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: &#39;&lt;button v-on:click&#x3D;&quot;count++&quot;&gt;You clicked me &#123;&#123; count &#125;&#125; times.&lt;&#x2F;button&gt;&#39;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>以下有兩點需要特別注意的地方<br>:::warning</p>
+<p>以下有兩點需要特別注意的地方<br>
+:::warning</p>
 <ol>
 <li>命名：元件的命名可以使用kebab-case（中間用－串聯）或是PascalCase（開頭大小寫），但因為到時候我們使用元件的方法是將它變成像html標籤，但是html對大小寫不敏感，所以我都會用kebab-case命名，避免出問題</li>
-<li>data不是直接接一個物件，而是要用一個<code>function(){return {}}</code>回傳一個物件<br>:::</li>
+<li>data不是直接接一個物件，而是要用一個<code>function(){return {}}</code>回傳一個物件<br>
+:::</li>
 </ol>
-<h3 id="▌部分宣告"><a href="#▌部分宣告" class="headerlink" title="▌部分宣告"></a>▌部分宣告</h3><p>先宣告一個新裡的「相關資料」，接著再到vue app裡建立元件物件，key為元件的名稱，value就是將剛剛宣告的相關資料帶進去</p>
+<h3 id="▌部分宣告">▌部分宣告</h3>
+<p>先宣告一個新裡的「相關資料」，接著再到vue app裡建立元件物件，key為元件的名稱，value就是將剛剛宣告的相關資料帶進去</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//利用像是html的標籤，就可以使用這個元件</span></span><br><span class="line"></span><br><span class="line">componentLocal = &#123;</span><br><span class="line">&#123;</span><br><span class="line">  data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      count: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">'&lt;button v-on:click="count++"&gt;You clicked me &#123;&#123; count &#125;&#125; times.&lt;/button&gt;'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//宣告</span></span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#app'</span>,</span><br><span class="line">    data: &#123;&#125;,</span><br><span class="line">    methods: &#123;&#125;,</span><br><span class="line">    <span class="comment">//在這邊在加入元件</span></span><br><span class="line">    components&#123;</span><br><span class="line">        component-local:componentLocal<span class="comment">//載入一開始宣告的設定</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>:::info<br><strong>全域與部分宣告有什麼差別呢?</strong><br>全域：元件會無條件跟網頁一起被載入，可被所以東西共享<br>部分：只有在會用到時才會載入，被限制在vue #app裡<br>:::</p>
-<h2 id="▌template與x-template"><a href="#▌template與x-template" class="headerlink" title="▌template與x-template"></a>▌template與x-template</h2><p>元件的html程式碼，除了我們將它放在template，還有另外一種<code>x-template</code>，這樣很多一大串的的html程式碼就不用都寫在物件裡，也相對好閱讀<br><br></p>
-<p>如何建立：<br>使用<script>標籤，並將type設定為type="text/x-template"，id則為這個x-template名字</p>
+<p>:::info<br>
+<strong>全域與部分宣告有什麼差別呢?</strong><br>
+全域：元件會無條件跟網頁一起被載入，可被所以東西共享<br>
+部分：只有在會用到時才會載入，被限制在vue #app裡<br>
+:::</p>
+<h2 id="▌template與x-template">▌template與x-template</h2>
+<p>元件的html程式碼，除了我們將它放在template，還有另外一種<code>x-template</code>，這樣很多一大串的的html程式碼就不用都寫在物件裡，也相對好閱讀<br>
+<br></p>
+<p>如何建立：<br>
+使用<script>標籤，並將type設定為type=“text/x-template”，id則為這個x-template名字</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/x-template"</span> <span class="attr">id</span>=<span class="string">"hello-world-template"</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="comment">//這邊放入元件的html碼</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello hello hello<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>接著回到元件設定</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'button-counter--元件的名稱'</span>, &#123;</span><br><span class="line">    data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          count: <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template: <span class="string">'#hello-world-template'</span> <span class="comment">//這邊帶入x-tempalte要記得加上#字號，因為是抓取id</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>:::danger<br><strong>x-template注意事項</strong></p>
+<p>:::danger<br>
+<strong>x-template注意事項</strong></p>
 <ol>
 <li>x-template 要建立在 vue app 的 DOM 之外</li>
 <li>在官方文件有提到建議，此方法可以運用在大型的靜態渲染或是極小型，還是建議避免跟原本的組件分開寫</li>
-<li>如果有個 x-template 有大量的靜態內容，我們可以使用<code>v-once</code>讓它只渲染一次，緩存起來<br>:::</li>
+<li>如果有個 x-template 有大量的靜態內容，我們可以使用<code>v-once</code>讓它只渲染一次，緩存起來<br>
+:::</li>
 </ol>
 
     </div>
@@ -350,7 +367,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-Component-元件-基本用法"><span class="nav-number">1.</span> <span class="nav-text">Vue Component 元件 基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#▌前言"><span class="nav-number">1.1.</span> <span class="nav-text">▌前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌宣告Vue-Component"><span class="nav-number">1.2.</span> <span class="nav-text">▌宣告Vue Component</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#▌全域宣告"><span class="nav-number">1.2.1.</span> <span class="nav-text">▌全域宣告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌部分宣告"><span class="nav-number">1.2.2.</span> <span class="nav-text">▌部分宣告</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌template與x-template"><span class="nav-number">1.3.</span> <span class="nav-text">▌template與x-template</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">Vue Component 元件 基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#▌前言"><span class="nav-number">1.1.</span> <span class="nav-text">▌前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌宣告Vue-Component"><span class="nav-number">1.2.</span> <span class="nav-text">▌宣告Vue Component</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#▌全域宣告"><span class="nav-number">1.2.1.</span> <span class="nav-text">▌全域宣告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#▌部分宣告"><span class="nav-number">1.2.2.</span> <span class="nav-text">▌部分宣告</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#▌template與x-template"><span class="nav-number">1.3.</span> <span class="nav-text">▌template與x-template</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -382,6 +399,11 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:erishen34@gmail.com" title="E-Mail → mailto:erishen34@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
 
 
 
@@ -411,7 +433,7 @@
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主題 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
+  <div class="theme-info">主題 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
   </div>
 
         
